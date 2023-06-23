@@ -2,5 +2,17 @@
     <string name="app_name">Slowdy</string>
     <string name="Home">Home</string>
     <string name="Notifications">Notifications</string>
-    <string name="Settings">Setting</string>
+    <string name="Settings">Settings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="current">Current</string>
+    <string name="whats_new">What\'s new</string>
+    <string name="missed">Missed</string>
+    <string name="test_profile">Test Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="night_mode">Night Mode</string>
+    <string name="notifications">Notifications</string>
+    <string name="send_us_a_message">Send us a message</string>
+    <string name="about_us">About us</string>
+    <string name="logout">Logout</string>
 </resources>
