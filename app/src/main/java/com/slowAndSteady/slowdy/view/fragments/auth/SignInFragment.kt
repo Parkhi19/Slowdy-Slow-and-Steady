@@ -19,12 +19,12 @@ class SignInFragment : Fragment() {
     ): View {
         binding = FragmentSigninBinding.inflate(inflater, container, false)
         navController = NavHostFragment.findNavController(this)
-
-        binding.button.setOnClickListener {
-            // Handle the button click event here
-            val action = SignInFragmentDirections.actionSignInFragmentToSignupFragment()
-            navController.navigate(action)
-        }
+//
+//        binding.button.setOnClickListener {
+//            // Handle the button click event here
+//            val action = SignInFragmentDirections.actionSignInFragmentToSignupFragment()
+//            navController.navigate(action)
+//        }
 
         return binding.root
     }
