@@ -15,4 +15,12 @@
     <string name="send_us_a_message">Send us a message</string>
     <string name="about_us">About us</string>
     <string name="logout">Logout</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Log In</string>
+    <string name="stay_informed_of_your_habits_with_n_slowdy">Stay informed of your habits with \n Slowdy</string>
+    <string name="stay_informed_of_your_habits_with_n_n_slowdy">Stay informed of your habits with \n \n slowdy</string>
+    <string name="enter_your_email_address">Enter your email address</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="or">Or</string>
+    <string name="continue_with_google">Continue with Google</string>
 </resources>
