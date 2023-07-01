@@ -32,7 +32,6 @@
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toTopOf="parent"
             android:padding="20dp"
-
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:inputType="textEmailAddress"
@@ -74,6 +73,7 @@
       app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
       android:layout_height="wrap_content"
       android:gravity="center_horizontal"
+      android:id="@+id/googleSignIn"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/googleSignInText"
       style="@style/ButtonPrimary"
