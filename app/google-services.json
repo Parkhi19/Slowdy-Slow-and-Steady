@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "253264818636",
+    "project_id": "slowdy-94466",
+    "storage_bucket": "slowdy-94466.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253264818636:android:4eb4cfd3552bd3d3316d69",
+        "android_client_info": {
+          "package_name": "com.slowAndSteady.slowdy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253264818636-91l2sdjfrkdqd270et22g0rn0o14gue5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.slowAndSteady.slowdy",
+            "certificate_hash": "9f31fa5defd9e2a0c92fc1332b57f57d5068f662"
+          }
+        },
+        {
+          "client_id": "253264818636-d2ijafvv5hujooem9iadpt2594k1ic19.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKROSuFfSOslx3BxKmvbT_b4E--Vo5KSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253264818636-d2ijafvv5hujooem9iadpt2594k1ic19.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
