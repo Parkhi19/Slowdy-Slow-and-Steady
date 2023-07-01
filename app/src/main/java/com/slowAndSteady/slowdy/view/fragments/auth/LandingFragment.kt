@@ -30,6 +30,11 @@ class LandingFragment : Fragment() {
             navController.navigate(action)
         }
 
+        binding.signupButton.setOnClickListener{
+            val action = LandingFragmentDirections.actionLandingFragmentToSignupFragment()
+            navController.navigate(action)
+        }
+
         return binding.root
     }
 }
