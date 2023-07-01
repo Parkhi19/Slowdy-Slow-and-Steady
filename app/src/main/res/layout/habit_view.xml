@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/primary_setting_panel_background"
+    app:cardCornerRadius="24dp"
+    android:layout_margin="8dp"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/habitImageIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/habit_view_icon_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:srcCompat="@drawable/habit_icon"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/habitImageIcon"
+            android:layout_marginHorizontal="12dp"
+            android:layout_gravity="center"
+            android:paddingHorizontal="20dp"
+            android:text="My habit"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/habitName"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <com.slowAndSteady.slowdy.view.custom.HabitStreaks
+            android:layout_width="0dp"
+            android:id="@+id/habitStreakView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/habitName"
+            app:layout_constraintTop_toBottomOf="@+id/habitName"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
