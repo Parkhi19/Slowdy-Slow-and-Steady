@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary_color">#1FCC94</color>
-    <color name="status_bar_color">#FBFFDC</color>
+    <color name="status_bar_color">#3AA6B9</color>
+    <color name="primary_button_background">#1FCC94</color>
+    <color name="primary_button_text_color">#000000</color>
+    <color name="main_background">#000000</color>
+    <color name="primary_setting_panel_background">#414446</color>
+    <color name="primary_change_mode">#47A992</color>
+    <color name="primary_notifications">#FF6D60</color>
+    <color name="primary_text_color">#FFFFFF</color>
+    <color name="primary_arrow_color">#ffffff</color>
+    <color name="send_message_color">#3AA6B9</color>
+    <color name="primary_about_us_color">#E7CEA6</color>
+    <color name="primary_logout_color">#FF9EAA</color>
+    <color name="primary_button_color">#1FCC94</color>
+    <color name="primary_habit_view_icon_background">#313334</color>
+    <color name="habit_icon_color">#ffffff</color>
+
 </resources>
