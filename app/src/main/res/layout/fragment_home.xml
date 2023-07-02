@@ -10,15 +10,20 @@
         android:id="@+id/helloUserText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guidelineTop"
-        android:text="Hello Parkhi" />
+        android:text="Hello Parkhi, Let's tick it off together today!" />
 
     <TextView
         android:id="@+id/dateToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/helloUserText"
         android:text="Hello Parkhi" />
 
@@ -27,7 +32,7 @@
         android:layout_height="match_parent"
         android:id="@+id/guidelineTop"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1"/>
+        app:layout_constraintGuide_percent="0.05"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="wrap_content"
@@ -43,18 +48,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/habitRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-        tools:listitem="@layout/habit_view"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/dateToday"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-<!--    <Button-->
+    <!--    <Button-->
 <!--        android:id="@+id/bottomButton"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
@@ -63,6 +57,20 @@
 <!--        android:text="Button"-->
 <!--        app:layout_constraintBottom_toBottomOf="parent"-->
 <!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/habitRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/dateToday"
+        app:layout_constraintVertical_bias="0.0"
+        android:paddingBottom="48dp"
+        tools:listitem="@layout/habit_view" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
