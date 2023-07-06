@@ -6,47 +6,55 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.slowAndSteady.slowdy.R
+import com.slowAndSteady.slowdy.SlowdyApplication
 import com.slowAndSteady.slowdy.databinding.FragmentHomeBinding
-import com.slowAndSteady.slowdy.databinding.FragmentSigninBinding
-import com.slowAndSteady.slowdy.databinding.FragmentSignupBinding
-import com.slowAndSteady.slowdy.model.HabitModel
+import com.slowAndSteady.slowdy.data.entity.HabitEntity
 import com.slowAndSteady.slowdy.utils.Utils
 import com.slowAndSteady.slowdy.view.adapter.HabitViewAdapter
-import com.slowAndSteady.slowdy.view.custom.HabitStreaks
-import java.text.SimpleDateFormat
+import com.slowAndSteady.slowdy.view.fragments.auth.LandingFragmentDirections
+import com.slowAndSteady.slowdy.viewModel.home.MainViewModel
+import com.slowAndSteady.slowdy.viewModel.home.MainViewModelFactory
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import java.util.Calendar
-import java.util.Date
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var navController: NavController
 
+    private val viewModel: MainViewModel by viewModels {
+        MainViewModelFactory((requireActivity().application as SlowdyApplication).habitRepository)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        navController = NavHostFragment.findNavController(this)
 
         binding.dateToday.text = Utils.getFormattedDate(Calendar.getInstance())
-        val habitLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val habitLayoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        lifecycleScope.launch {
+            viewModel.allHabits.collect{
+                val habitViewAdapter = HabitViewAdapter(it)
 
-        val habitLists = listOf(
-            HabitModel("1-11-1", "study", listOf(true, false, true, true, true, true, true, true, false, true, false, true, false)),
-            HabitModel("1-11-1", "study", listOf(true, false, true)),
-            HabitModel("1-11-1", "study", listOf(true, false, true)),
-            HabitModel("1-11-1", "study", listOf(true, false, true)),
-            HabitModel("1-11-1", "study", listOf(true, false, true)),
-            HabitModel("1-11-1", "study", listOf(true, false, true)),
-            HabitModel("1-11-1", "study", listOf(true, false, true)),
-            HabitModel("1-11-1", "study", listOf(true, false, true)),
-        )
-        val habitViewAdapter = HabitViewAdapter(habitLists)
+                binding.habitRecyclerView.adapter = habitViewAdapter
+                binding.habitRecyclerView.layoutManager = habitLayoutManager
+            }
+        }
+        binding.addANewHabit.setOnClickListener{
+            val action = HomeFragmentDirections.actionHomeFragmentToAddANewHabitFragment()
+            navController.navigate(action)
+        }
 
-        binding.habitRecyclerView.adapter = habitViewAdapter
-        binding.habitRecyclerView.layoutManager = habitLayoutManager
 
         return binding.root
     }
