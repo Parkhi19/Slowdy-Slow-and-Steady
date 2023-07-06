@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.slowAndSteady.slowdy.view.fragments.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_addANewHabitFragment"
+            app:destination="@id/addANewHabitFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.slowAndSteady.slowdy.view.fragments.home.NotificationsFragment"
@@ -20,4 +24,9 @@
         android:name="com.slowAndSteady.slowdy.view.fragments.home.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/addANewHabitFragment"
+        android:name="com.slowAndSteady.slowdy.view.fragments.home.AddANewHabitFragment"
+        android:label="fragment_add_a_new_habit"
+        tools:layout="@layout/fragment_add_a_new_habit" />
 </navigation>
