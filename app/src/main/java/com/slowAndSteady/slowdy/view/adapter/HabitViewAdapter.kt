@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.slowAndSteady.slowdy.databinding.HabitViewBinding
-import com.slowAndSteady.slowdy.model.HabitModel
+import com.slowAndSteady.slowdy.data.entity.HabitEntity
 
-class HabitViewAdapter(private val habitModelList : List<HabitModel> ) : RecyclerView.Adapter<HabitViewAdapter.HabitViewHolder>() {
+class HabitViewAdapter(private val habitModelList : List<HabitEntity> ) : RecyclerView.Adapter<HabitViewAdapter.HabitViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
         val binding = HabitViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HabitViewHolder(binding)
