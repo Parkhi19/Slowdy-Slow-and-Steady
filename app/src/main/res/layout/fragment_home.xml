@@ -73,7 +73,7 @@
         tools:listitem="@layout/habit_view" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationView"
+        android:id="@+id/addANewHabit"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:layout_constraintEnd_toEndOf="parent"
