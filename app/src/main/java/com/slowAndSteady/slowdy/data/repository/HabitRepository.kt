@@ -3,8 +3,9 @@ package com.slowAndSteady.slowdy.data.repository
 import com.slowAndSteady.slowdy.data.dao.HabitDao
 import com.slowAndSteady.slowdy.data.entity.HabitEntity
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class HabitRepository(private val habitDao: HabitDao) {
+class HabitRepository @Inject constructor(private val habitDao: HabitDao) {
 
     fun getAllHabits(): Flow<List<HabitEntity>>{
         return habitDao.getHabits()
