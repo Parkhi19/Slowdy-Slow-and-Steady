@@ -25,4 +25,8 @@
     <string name="continue_with_google">Continue with Google</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="add_a_habit">Add a habit</string>
+    <string name="please_enter_a_valid_habit_name">Please enter a valid habit name</string>
+    <string name="ok">OK</string>
+    <string name="create_your_habit_fragment_title">Create your habit</string>
+    <string name="habit_name_error">Please enter a valid habit name for your habit!</string>
 </resources>

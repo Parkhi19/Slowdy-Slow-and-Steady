@@ -19,6 +19,7 @@
     <color name="primary_button_color">#FBFFDC</color>
     <color name="streaks_card_done">#6FFF74</color>
     <color name="streaks_card_skipped">#FB1201</color>
+    <color name="input_error_color">#FB1201</color>
     <color name="habit_icon_color">#000000</color>
     <color name="primary_habit_view_icon_background">#CED2AF</color>
 
