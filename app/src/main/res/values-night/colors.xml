@@ -16,5 +16,11 @@
     <color name="primary_button_color">#1FCC94</color>
     <color name="primary_habit_view_icon_background">#313334</color>
     <color name="habit_icon_color">#ffffff</color>
+    <color name="habit_color_1">#146C94</color>
+    <color name="habit_color_2">#B762C1</color>
+    <color name="habit_color_3">#D4ADFC</color>
+    <color name="habit_color_4">#219F94</color>
+    <color name="habit_color_5">#00C1D4</color>
+
 
 </resources>

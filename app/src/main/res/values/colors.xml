@@ -18,9 +18,16 @@
     <color name="primary_logout_color">#FF9EAA</color>
     <color name="primary_button_color">#FBFFDC</color>
     <color name="streaks_card_done">#6FFF74</color>
+    <color name="habit_completed_color">#6FFF74</color>
     <color name="streaks_card_skipped">#FB1201</color>
     <color name="input_error_color">#FB1201</color>
     <color name="habit_icon_color">#000000</color>
     <color name="primary_habit_view_icon_background">#CED2AF</color>
+    <color name="habit_color_1">#8CC0DE</color>
+    <color name="habit_color_2">#5A96E3</color>
+    <color name="habit_color_3">#9575DE</color>
+    <color name="habit_color_4">#FF9B9B</color>
+    <color name="habit_color_5">#FF597B</color>
+
 
 </resources>

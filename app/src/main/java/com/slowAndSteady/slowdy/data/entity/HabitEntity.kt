@@ -12,6 +12,7 @@ import java.util.Date
     @ColumnInfo val habitStartDate : Long,
     @ColumnInfo val habitName : String,
     @ColumnInfo val habitStreaks :  List<Boolean> = emptyList(),
+    @ColumnInfo var habitColor : Int,
     @PrimaryKey(autoGenerate = true) val habitID : Int = 0,
 ) {
 

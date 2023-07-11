@@ -1,22 +1,18 @@
 package com.slowAndSteady.slowdy.view.fragments.home
-
-import android.accessibilityservice.GestureDescription
-import android.app.AlertDialog
-import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
-import android.service.voice.VoiceInteractionSession.VisibleActivityCallback
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.slowAndSteady.slowdy.R
 import com.slowAndSteady.slowdy.data.entity.HabitEntity
 import com.slowAndSteady.slowdy.databinding.FragmentAddANewHabitBinding
 import com.slowAndSteady.slowdy.viewModel.home.MainViewModel
 
+private var selectedColor: Int = 0
 class AddANewHabitFragment : Fragment() {
     private lateinit var binding: FragmentAddANewHabitBinding
     private val viewModel: MainViewModel by activityViewModels()
@@ -24,7 +20,7 @@ class AddANewHabitFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAddANewHabitBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,14 +32,30 @@ class AddANewHabitFragment : Fragment() {
             val habitName = binding.habitNameInput.text.toString()
             if (habitName.isBlank()) {
                 binding.habitNameValidationAlert.visibility = View.VISIBLE
-            }
-            else {
+            } else {
                 binding.habitNameValidationAlert.visibility = View.GONE
-                viewModel.createAndUpdateHabit(HabitEntity(0, habitName))
-            }
+                viewModel.createAndUpdateHabit(HabitEntity(0, habitName, habitColor = selectedColor ))
             }
         }
+        binding.colorChoice1.setOnClickListener {
+            selectedColor = ContextCompat.getColor(requireContext(), R.color.habit_color_1)
+        }
+        binding.colorChoice2.setOnClickListener {
+            selectedColor = ContextCompat.getColor(requireContext(), R.color.habit_color_2)
+
+        }
+        binding.colorChoice3.setOnClickListener {
+            selectedColor = ContextCompat.getColor(requireContext(), R.color.habit_color_3)
+
+        }
+        binding.colorChoice4.setOnClickListener {
+            selectedColor = ContextCompat.getColor(requireContext(), R.color.habit_color_4)
+
+        }
+        binding.colorChoice5.setOnClickListener {
+            selectedColor = ContextCompat.getColor(requireContext(), R.color.habit_color_5)
+
+        }
+
     }
-
-
-
+}

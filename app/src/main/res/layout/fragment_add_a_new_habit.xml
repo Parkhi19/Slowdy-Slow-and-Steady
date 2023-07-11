@@ -100,4 +100,73 @@
         app:layout_constraintTop_toBottomOf="@+id/habitNameInput"/>
 
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/pickedColorText"
+        android:text="@string/pick_a_color_for_your_habit"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/habitNameValidationAlert"/>
+
+    <View
+        android:id="@+id/colorChoice1"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/circular_background"
+        app:layout_constraintEnd_toStartOf="@id/colorChoice2"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        android:backgroundTint="@color/habit_color_1"
+        app:layout_constraintTop_toBottomOf="@id/pickedColorText" />
+
+    <View
+        android:id="@+id/colorChoice2"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/circular_background"
+        app:layout_constraintEnd_toStartOf="@id/colorChoice3"
+        app:layout_constraintStart_toEndOf="@id/colorChoice1"
+        android:backgroundTint="@color/habit_color_2"
+        app:layout_constraintTop_toBottomOf="@id/pickedColorText" />
+
+    <View
+        android:id="@+id/colorChoice3"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/circular_background"
+        app:layout_constraintEnd_toStartOf="@id/colorChoice4"
+        app:layout_constraintStart_toEndOf="@id/colorChoice2"
+        android:backgroundTint="@color/habit_color_3"
+        app:layout_constraintTop_toBottomOf="@id/pickedColorText" />
+
+    <View
+        android:id="@+id/colorChoice4"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/circular_background"
+        app:layout_constraintEnd_toStartOf="@id/colorChoice5"
+        app:layout_constraintStart_toEndOf="@id/colorChoice3"
+        android:backgroundTint="@color/habit_color_4"
+        app:layout_constraintTop_toBottomOf="@id/pickedColorText" />
+
+    <View
+        android:id="@+id/colorChoice5"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/circular_background"
+        android:backgroundTint="@color/habit_color_5"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toEndOf="@id/colorChoice4"
+        app:layout_constraintTop_toBottomOf="@id/pickedColorText" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,4 +29,7 @@
     <string name="ok">OK</string>
     <string name="create_your_habit_fragment_title">Create your habit</string>
     <string name="habit_name_error">Please enter a valid habit name for your habit!</string>
+    <string name="pick_a_color_for_your_habit">Pick a color for your habit</string>
+    <string name="picked_color_for_your_habit">Picked color for your habit :</string>
+    <string name="set_color_foor_your_habit">Set color foor your habit</string>
 </resources>
