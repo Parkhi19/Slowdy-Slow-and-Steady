@@ -1,9 +1,11 @@
 package com.slowAndSteady.slowdy.view.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.slowAndSteady.slowdy.data.entity.HabitEntity
 import com.slowAndSteady.slowdy.databinding.HabitViewBinding
@@ -22,7 +24,9 @@ class HabitViewAdapter(
         val habitModel = habitModelList[position]
         holder.binding.habitName.text = habitModel.habitName
         holder.binding.habitStreakView.setHabits(habitModel.habitStreaks)
-        holder.binding.root.setCardBackgroundColor(habitModel.habitColor)
+        holder.binding.root.setCardBackgroundColor(
+            ContextCompat.getColor(holder.binding.root.context,habitModel.habitColor)
+        )
         holder.binding.root.setOnClickListener {
             habitClickListener.onHabitClicked(habitModel)
         }

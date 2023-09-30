@@ -4,16 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.slowAndSteady.slowdy.R
 import com.slowAndSteady.slowdy.data.entity.HabitEntity
 import com.slowAndSteady.slowdy.databinding.FragmentAddANewHabitBinding
 import com.slowAndSteady.slowdy.viewModel.home.MainViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
-private var selectedColor: Int = 0
 class AddANewHabitFragment : Fragment() {
+    private lateinit var habitBackgroundColorsMap: Map<ImageView, Int>
     private lateinit var binding: FragmentAddANewHabitBinding
     private val viewModel: MainViewModel by activityViewModels()
 
@@ -22,6 +28,13 @@ class AddANewHabitFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddANewHabitBinding.inflate(inflater, container, false)
+        habitBackgroundColorsMap = mapOf(
+            binding.colorChoice1 to R.color.habit_color_1,
+            binding.colorChoice2 to R.color.habit_color_2,
+            binding.colorChoice3 to R.color.habit_color_3,
+            binding.colorChoice4 to R.color.habit_color_4,
+            binding.colorChoice5 to R.color.habit_color_5
+        )
         return binding.root
     }
 
@@ -34,27 +47,21 @@ class AddANewHabitFragment : Fragment() {
                 binding.habitNameValidationAlert.visibility = View.VISIBLE
             } else {
                 binding.habitNameValidationAlert.visibility = View.GONE
-                viewModel.createAndUpdateHabit(HabitEntity(0, habitName, habitColor = selectedColor ))
+                viewModel.createAndUpdateHabit(HabitEntity(0, habitName, habitColor = habitBackgroundColorsMap.values.toList()[viewModel.habitColorSelectionIndex.value] ))
             }
         }
-        binding.colorChoice1.setOnClickListener {
-            selectedColor = ContextCompat.getColor(requireContext(), R.color.habit_color_1)
+        lifecycleScope.launch {
+            viewModel.habitColorSelectionIndex.collect { index ->
+                habitBackgroundColorsMap.keys.forEach {
+                    it.setImageResource(0)
+                }
+                habitBackgroundColorsMap.keys.toList()[index].setImageResource(R.drawable.selected_icon)
+            }
         }
-        binding.colorChoice2.setOnClickListener {
-            selectedColor = ContextCompat.getColor(requireContext(), R.color.habit_color_2)
-
-        }
-        binding.colorChoice3.setOnClickListener {
-            selectedColor = ContextCompat.getColor(requireContext(), R.color.habit_color_3)
-
-        }
-        binding.colorChoice4.setOnClickListener {
-            selectedColor = ContextCompat.getColor(requireContext(), R.color.habit_color_4)
-
-        }
-        binding.colorChoice5.setOnClickListener {
-            selectedColor = ContextCompat.getColor(requireContext(), R.color.habit_color_5)
-
+        habitBackgroundColorsMap.keys.toList().forEachIndexed { index, imageView ->
+            imageView.setOnClickListener {
+                viewModel.updateHabitColorIndex(index)
+            }
         }
 
     }
