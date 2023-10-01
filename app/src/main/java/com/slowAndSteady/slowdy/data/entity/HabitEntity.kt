@@ -8,7 +8,7 @@ import com.google.gson.Gson
 import java.util.Date
 
 @Entity(tableName = "habit_table")
- class HabitEntity(
+data class HabitEntity(
     @ColumnInfo val habitStartDate : Long,
     @ColumnInfo val habitName : String,
     @ColumnInfo val habitStreaks :  List<Boolean> = emptyList(),

@@ -23,6 +23,7 @@ class HabitStreaks @JvmOverloads constructor(
         findViewById<RecyclerView>(R.id.habitStreak).apply {
             adapter = habitStreaksAdapter
             layoutManager = horizontalLayoutManager
+            scrollToPosition(habitStreaksList.size - 1)
         }
     }
 }
