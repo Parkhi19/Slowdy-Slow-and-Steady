@@ -50,5 +50,18 @@ class MainViewModel @Inject constructor (private val repository: HabitRepository
     fun updateHabitColorIndex(habitIndex: Int){
         _habitColorSelectionIndex.value = habitIndex
     }
+
+    fun updateReminderTime(hourOfDay: Int, minute: Int) {
+        viewModelScope.launch {
+            allHabits.value.lastOrNull()?.let {
+                repository.createAndUpdateHabit(
+                    it.copy(
+                        habitReminderHour = hourOfDay,
+                        habitReminderMinute = minute
+                    )
+                )
+            }
+        }
+    }
 }
 

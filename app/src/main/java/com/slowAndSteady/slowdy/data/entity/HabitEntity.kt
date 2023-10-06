@@ -12,6 +12,8 @@ data class HabitEntity(
     @ColumnInfo val habitStartDate : Long,
     @ColumnInfo val habitName : String,
     @ColumnInfo val habitStreaks :  List<Boolean> = emptyList(),
+    @ColumnInfo val habitReminderHour : Int = 0,
+    @ColumnInfo val habitReminderMinute : Int = 0,
     @ColumnInfo var habitColor : Int,
     @PrimaryKey(autoGenerate = true) val habitID : Int = 0,
 ) {

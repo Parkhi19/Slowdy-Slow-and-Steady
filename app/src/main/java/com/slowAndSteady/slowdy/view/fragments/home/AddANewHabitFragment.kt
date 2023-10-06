@@ -1,4 +1,5 @@
 package com.slowAndSteady.slowdy.view.fragments.home
+import android.app.TimePickerDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import com.slowAndSteady.slowdy.databinding.FragmentAddANewHabitBinding
 import com.slowAndSteady.slowdy.viewModel.home.MainViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 class AddANewHabitFragment : Fragment() {
     private lateinit var habitBackgroundColorsMap: Map<ImageView, Int>
@@ -64,5 +66,25 @@ class AddANewHabitFragment : Fragment() {
             }
         }
 
+        binding.createReminderButton.setOnClickListener {
+            val calendarInstance = Calendar.getInstance()
+            val hour = calendarInstance.get(Calendar.HOUR_OF_DAY)
+            val minute = calendarInstance.get(Calendar.MINUTE)
+            val timePickerDialog = TimePickerDialog(
+                requireContext(),
+                { _, hourOfDay, minute ->
+                    viewModel.updateReminderTime(hourOfDay, minute)
+                    binding.createReminderButton.text = " We will remind you at $hourOfDay:$minute"
+                },
+                hour,
+                minute,
+                false
+            )
+            timePickerDialog.show()
+        }
+
+
     }
+
+
 }

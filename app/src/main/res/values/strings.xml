@@ -32,4 +32,6 @@
     <string name="pick_a_color_for_your_habit">Pick a color for your habit</string>
     <string name="picked_color_for_your_habit">Picked color for your habit :</string>
     <string name="set_color_foor_your_habit">Set color foor your habit</string>
+    <string name="your_reminder">Your Reminder</string>
+    <string name="create_reminder">Create Reminder</string>
 </resources>
