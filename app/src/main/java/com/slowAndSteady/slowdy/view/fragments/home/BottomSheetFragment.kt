@@ -22,13 +22,15 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     ): View? {
         binding = BottomSheetDialogBinding.inflate(inflater, container , false)
         binding.okayButton.setOnClickListener {
-
+            dismiss()
         }
         return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
     }
     companion object {
         fun newInstance(): BottomSheetFragment {

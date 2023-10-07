@@ -1,5 +1,9 @@
 package com.slowAndSteady.slowdy.view.fragments.home
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +19,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.slowAndSteady.slowdy.R
 import com.slowAndSteady.slowdy.data.entity.HabitEntity
 import com.slowAndSteady.slowdy.databinding.FragmentAddANewHabitBinding
+import com.slowAndSteady.slowdy.view.receiver.AlarmReceiver
 import com.slowAndSteady.slowdy.viewModel.home.MainViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -82,9 +87,29 @@ class AddANewHabitFragment : Fragment() {
             )
             timePickerDialog.show()
         }
-
+        setAlarm()
 
     }
 
+    private fun setAlarm() {
+        val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(requireContext(), AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            requireContext(),
+            0,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, 12)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            pendingIntent
+        )
+    }
 
 }
