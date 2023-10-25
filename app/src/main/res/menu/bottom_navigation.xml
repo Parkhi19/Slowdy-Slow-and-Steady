@@ -5,10 +5,6 @@
         android:icon="@drawable/home_bottom_navigation"
         android:title="@string/Home" />
     <item
-        android:id="@+id/notification_bottom_navigation"
-        android:icon="@drawable/notification_bottom_navigation"
-        android:title="@string/Notifications" />
-    <item
         android:id="@+id/settings_bottom_navigation"
         android:icon="@drawable/settings_bottom_navigation"
         android:title="@string/Settings" />
