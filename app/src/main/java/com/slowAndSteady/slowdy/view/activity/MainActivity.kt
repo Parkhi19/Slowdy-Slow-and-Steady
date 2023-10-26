@@ -33,13 +33,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigate(menuId: Int) {
+   private fun navigate(menuId: Int) {
         when(menuId) {
             R.id.home_bottom_navigation -> {
                 navController.navigate(R.id.homeFragment)
-            }
-            R.id.notification_bottom_navigation ->{
-                navController.navigate(R.id.notificationsFragment)
             }
             R.id.settings_bottom_navigation ->{
                 navController.navigate(R.id.settingsFragment)

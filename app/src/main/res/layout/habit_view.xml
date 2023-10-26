@@ -42,6 +42,7 @@
             app:layout_constraintVertical_bias="0.5"
             tools:layout_editor_absoluteX="16dp" />
 
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +51,7 @@
             android:layout_centerVertical="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/habitStreakView"
-            app:tint="@color/primary_arrow_color" />
+            app:tint="@color/primary_icon_color" />
 
         <com.slowAndSteady.slowdy.view.custom.HabitStreaks
             android:layout_width="0dp"

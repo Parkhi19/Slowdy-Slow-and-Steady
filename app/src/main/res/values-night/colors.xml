@@ -10,6 +10,7 @@
     <color name="primary_notifications">#FF6D60</color>
     <color name="primary_text_color">#FFFFFF</color>
     <color name="primary_arrow_color">#ffffff</color>
+    <color name="landing_screen_text_color">#ffffff</color>
     <color name="send_message_color">#3AA6B9</color>
     <color name="primary_about_us_color">#E7CEA6</color>
     <color name="primary_logout_color">#FF9EAA</color>

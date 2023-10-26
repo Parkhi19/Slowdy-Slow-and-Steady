@@ -4,7 +4,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary_color">#000000</color>
-    <color name="main_background">#FBFFDC</color>
+    <color name="main_background">#FFFFFF</color>
     <color name="status_bar_color">#3AA6B9</color>
     <color name="primary_button_background">#000000</color>
     <color name="primary_button_text_color">#FFFFFF</color>
@@ -12,7 +12,8 @@
     <color name="primary_change_mode">#9BCDD2</color>
     <color name="primary_notifications">#FF8551</color>
     <color name="primary_text_color">#000000</color>
-    <color name="primary_arrow_color">#000000</color>
+    <color name="img_btn_text_color">#ffffff</color>
+    <color name="primary_icon_color">#000000</color>
     <color name="send_message_color">#3AA6B9</color>
     <color name="primary_about_us_color">#A1C2F1</color>
     <color name="primary_logout_color">#FF9EAA</color>
@@ -22,12 +23,17 @@
     <color name="streaks_card_skipped">#FB1201</color>
     <color name="input_error_color">#FB1201</color>
     <color name="habit_icon_color">#000000</color>
+    <color name="landing_screen_text_color">#000000</color>
     <color name="primary_habit_view_icon_background">#CED2AF</color>
     <color name="habit_color_1">#8CC0DE</color>
     <color name="habit_color_2">#5A96E3</color>
     <color name="habit_color_3">#9575DE</color>
     <color name="habit_color_4">#FF9B9B</color>
+    <color name="ask_question_btn_ripple_color">#Ffffff</color>
     <color name="habit_color_5">#FF597B</color>
+    <color name="ask_question_btn_color">#000000</color>
+    <color name="btn_text_color">#ffffff</color>
+    <color name="dialog_text_color">#ffffff</color>
 
 
 </resources>
