@@ -50,5 +50,12 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_left"/>
+        <action
+            android:id="@+id/action_landingFragment_to_skipForNowFragment2"
+            app:destination="@id/skipForNowFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/skipForNowFragment"
+        android:name="com.slowAndSteady.slowdy.view.fragments.auth.SkipForNowFragment"
+        android:label="SkipForNowFragment" />
 </navigation>
