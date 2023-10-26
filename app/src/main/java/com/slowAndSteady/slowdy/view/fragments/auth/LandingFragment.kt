@@ -34,6 +34,10 @@ class LandingFragment : Fragment() {
             val action = LandingFragmentDirections.actionLandingFragmentToSignupFragment()
             navController.navigate(action)
         }
+        binding.skipButton.setOnClickListener{
+             val action = LandingFragmentDirections.actionLandingFragmentToSkipForNowFragment2()
+            navController.navigate(action)
+        }
 
         return binding.root
     }
