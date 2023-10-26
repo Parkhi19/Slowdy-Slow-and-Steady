@@ -34,4 +34,9 @@
     <string name="set_color_foor_your_habit">Set color foor your habit</string>
     <string name="your_reminder">Your Reminder</string>
     <string name="create_reminder">Create Reminder</string>
+    <string name="skip_for_now">Skip for now</string>
+    <string name="oR">OR</string>
+    <string name="what_should_we_call_you">What should we call you?</string>
+    <string name="please_enter_your_name">Please enter your name</string>
+    <string name="next">Next</string>
 </resources>
