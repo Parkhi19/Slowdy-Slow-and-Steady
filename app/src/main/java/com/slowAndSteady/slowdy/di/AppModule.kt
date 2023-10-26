@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.slowAndSteady.slowdy.SlowdyApplication.Companion.appContext
 import com.slowAndSteady.slowdy.data.DatabaseHelper
 import com.slowAndSteady.slowdy.data.dao.HabitDao
+import com.slowAndSteady.slowdy.data.dao.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,5 +35,13 @@ object AppModule {
         database : DatabaseHelper
     ): HabitDao {
         return database.habitDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserDao(
+        database : DatabaseHelper
+    ): UserDao {
+        return database.userDao()
     }
 }
