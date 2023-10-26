@@ -65,7 +65,7 @@
         android:id="@+id/googleSignInText"
         android:layout_marginTop="30dp"
         android:textAlignment="center"
-        android:text="@string/or"/>
+        android:text="@string/oR"/>
 
   <LinearLayout
       android:layout_width="0dp"
@@ -90,6 +90,7 @@
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
           android:layout_marginStart="20dp"
+          android:textColor="#ffffff"
           android:text="@string/continue_with_google"/>
   </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -195,7 +195,7 @@
                         android:src="@drawable/right_arrow_icon"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        app:tint="@color/primary_arrow_color" />
+                        app:tint="@color/primary_icon_color" />
 
                 </RelativeLayout>
 
@@ -228,7 +228,7 @@
                         android:src="@drawable/right_arrow_icon"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        app:tint="@color/primary_arrow_color" />
+                        app:tint="@color/primary_icon_color" />
 
 
                 </RelativeLayout>
@@ -274,7 +274,7 @@
                         android:src="@drawable/right_arrow_icon"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        app:tint="@color/primary_arrow_color" />
+                        app:tint="@color/primary_icon_color" />
 
                 </RelativeLayout>
 
