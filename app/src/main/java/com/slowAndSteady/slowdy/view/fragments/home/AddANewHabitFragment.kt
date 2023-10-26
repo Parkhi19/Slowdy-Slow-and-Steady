@@ -88,7 +88,9 @@ class AddANewHabitFragment : Fragment() {
             timePickerDialog.show()
         }
         setAlarm()
-
+        binding.addHabitBackButton.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     private fun setAlarm() {
@@ -111,5 +113,6 @@ class AddANewHabitFragment : Fragment() {
             pendingIntent
         )
     }
+
 
 }

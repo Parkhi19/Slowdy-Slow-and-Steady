@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import com.slowAndSteady.slowdy.databinding.FragmentHabitLogBinding
 import com.slowAndSteady.slowdy.viewModel.home.MainViewModel
@@ -23,7 +24,7 @@ class HabitLogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHabitLogBinding.inflate(inflater, container, false)
-
+        navController = NavHostFragment.findNavController(this)
         binding.YesButton.setOnClickListener {
             val bottomSheetDialog = BottomSheetFragment()
             bottomSheetDialog.show(childFragmentManager, "Bottom Sheet Dialog Fragment")
@@ -35,7 +36,9 @@ class HabitLogFragment : Fragment() {
             bottomSheetDialog.show(childFragmentManager, "Bottom Sheet Dialog Fragment")
             viewModel.markHabit(habitId = args.habitId, false)
         }
-
+         binding.habitLogBackButton.setOnClickListener {
+            navController.popBackStack()
+         }
         return binding.root
     }
 }
