@@ -12,7 +12,18 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_addANewHabitFragment"
-            app:destination="@id/addANewHabitFragment" />
+            app:destination="@id/addANewHabitFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_habitLogFragment"
+            app:destination="@id/habitLogFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
@@ -29,4 +40,16 @@
         android:name="com.slowAndSteady.slowdy.view.fragments.home.AddANewHabitFragment"
         android:label="fragment_add_a_new_habit"
         tools:layout="@layout/fragment_add_a_new_habit" />
+    <fragment
+        android:id="@+id/habitLogFragment"
+        android:name="com.slowAndSteady.slowdy.view.fragments.home.HabitLogFragment"
+        android:label="fragment_habit_log"
+        tools:layout="@layout/fragment_habit_log" >
+        <argument
+            android:name="habitId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_habitLogFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

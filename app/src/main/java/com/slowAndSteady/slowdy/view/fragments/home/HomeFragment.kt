@@ -44,6 +44,12 @@ class HomeFragment : Fragment(), HabitViewAdapter.HabitClickListener {
 
             }
         }
+      lifecycleScope.launch {
+            viewModel.userEntity.collect{
+                binding.helloUserText.text = "Hello ${it?.userName}, Let's tick it off together today!"
+            }
+      }
+
         binding.addANewHabit.setOnClickListener{
             val action = HomeFragmentDirections.actionHomeFragmentToAddANewHabitFragment()
             navController.navigate(action)

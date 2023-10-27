@@ -27,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/emailAddressInput"
-            android:background="@drawable/button_background"
+            android:background="@drawable/text_input_background"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +43,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/passwordInput"
-                android:background="@drawable/button_background"
+                android:background="@drawable/text_input_background"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@+id/emailAddressInput"
@@ -90,7 +90,7 @@
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
           android:layout_marginStart="20dp"
-          android:textColor="#ffffff"
+          android:textColor="#000000"
           android:text="@string/continue_with_google"/>
   </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

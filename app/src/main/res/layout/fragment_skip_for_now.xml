@@ -57,13 +57,24 @@
             app:layout_constraintHorizontal_bias="0.5"
             android:hint="@string/please_enter_your_name" />
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/userNameValidationAlert"
+        android:textColor="@color/input_error_color"
+        android:text="Please enter a valid name"
+        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/skippedUserNameInput"/>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/skipButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         style="@style/ButtonPrimary"
         android:text="@string/next"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintTop_toBottomOf="@+id/skippedUserNameInput"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintHorizontal_bias="0.5"

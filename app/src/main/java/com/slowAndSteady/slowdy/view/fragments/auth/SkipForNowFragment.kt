@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -14,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.slowAndSteady.slowdy.data.entity.HabitEntity
 import com.slowAndSteady.slowdy.databinding.FragmentSignupBinding
 import com.slowAndSteady.slowdy.databinding.FragmentSkipForNowBinding
 import com.slowAndSteady.slowdy.view.activity.MainActivity
@@ -41,9 +43,15 @@ class SkipForNowFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.userNameValidationAlert.visibility = View.GONE
         binding.skipButton.setOnClickListener {
-            if (binding.skippedUserNameInput.text.toString().isNotEmpty()) {
+            val userName = binding.skippedUserNameInput.text.toString()
+            if (userName.isBlank()) {
+                binding.userNameValidationAlert.visibility = View.VISIBLE
+            } else {
+                binding.userNameValidationAlert.visibility = View.GONE
                 viewModel.anonymousSignIn(binding.skippedUserNameInput.text.toString())
+
             }
         }
         lifecycleScope.launch {

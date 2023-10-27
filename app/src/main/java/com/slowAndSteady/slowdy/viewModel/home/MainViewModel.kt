@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.slowAndSteady.slowdy.data.entity.HabitEntity
 import com.slowAndSteady.slowdy.data.repository.HabitRepository
+import com.slowAndSteady.slowdy.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -18,13 +19,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor (private val repository: HabitRepository) : ViewModel() {
+class MainViewModel @Inject constructor (private val repository: HabitRepository, private val userRepository: UserRepository ) : ViewModel() {
     val allHabits = repository.getAllHabits().stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
         emptyList()
     )
-
+     val userEntity = userRepository.getUser().stateIn(
+        viewModelScope,
+        SharingStarted.Eagerly,
+        null
+     )
     fun createAndUpdateHabit(habitEntity: HabitEntity) = viewModelScope.launch {
         repository.createAndUpdateHabit(habitEntity)
     }
