@@ -24,6 +24,10 @@ class SettingsFragment : Fragment() {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
         navController = NavHostFragment.findNavController(this)
 
+        binding.settingsFragmentBackBtn.setOnClickListener {
+            val action = SettingsFragmentDirections.actionSettingsFragmentToHomeFragment()
+            navController.navigate(action)
+        }
         return binding.root
     }
 

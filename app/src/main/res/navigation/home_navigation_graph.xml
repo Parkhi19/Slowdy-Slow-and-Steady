@@ -34,7 +34,11 @@
         android:id="@+id/settingsFragment"
         android:name="com.slowAndSteady.slowdy.view.fragments.home.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addANewHabitFragment"
         android:name="com.slowAndSteady.slowdy.view.fragments.home.AddANewHabitFragment"
