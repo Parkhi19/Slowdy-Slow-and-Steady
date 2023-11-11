@@ -6,6 +6,9 @@ import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.slowAndSteady.slowdy.R
 import com.slowAndSteady.slowdy.databinding.ActivityMainBinding
 import com.slowAndSteady.slowdy.databinding.FragmentSigninBinding

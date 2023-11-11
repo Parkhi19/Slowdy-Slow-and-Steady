@@ -1,5 +1,6 @@
 package com.slowAndSteady.slowdy.view.fragments.auth
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.slowAndSteady.slowdy.R
 import com.slowAndSteady.slowdy.databinding.FragmentSigninBinding
+import com.slowAndSteady.slowdy.view.activity.MainActivity
 
 class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSigninBinding
@@ -59,6 +61,7 @@ class SignInFragment : Fragment() {
                     auth.signInWithCredential(credential).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(requireContext(), "Done!!", Toast.LENGTH_SHORT).show()
+                            openHomeFragment()
                         } else {
                             Toast.makeText(requireContext(), "Failed!!", Toast.LENGTH_SHORT).show()
                         }
@@ -70,4 +73,9 @@ class SignInFragment : Fragment() {
                 Toast.makeText(requireContext(), "Failed!!", Toast.LENGTH_SHORT).show()
             }
         }
+
+    private fun openHomeFragment() {
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity(intent)
+    }
 }
