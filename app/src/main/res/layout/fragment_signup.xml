@@ -87,6 +87,7 @@
         android:layout_width="0dp"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        android:id="@+id/googleSignUpBtn"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"

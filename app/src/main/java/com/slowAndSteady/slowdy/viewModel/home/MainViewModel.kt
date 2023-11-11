@@ -36,7 +36,7 @@ class MainViewModel @Inject constructor (private val repository: HabitRepository
 
     private val _habitColorSelectionIndex = MutableStateFlow(0)
     val habitColorSelectionIndex = _habitColorSelectionIndex.asStateFlow()
-    fun markHabit(habitId: Int, habitStatus : Boolean) {
+    fun markHabit(habitId: String, habitStatus : Boolean) {
         viewModelScope.launch {
 
             allHabits.value.firstOrNull {

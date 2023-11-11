@@ -4,8 +4,11 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import java.util.Date
+import java.util.UUID
 
 @Entity(tableName = "habit_table")
 data class HabitEntity(
@@ -13,10 +16,11 @@ data class HabitEntity(
     @ColumnInfo val habitName : String,
     @ColumnInfo val habitStreaks :  List<Boolean> = emptyList(),
     @ColumnInfo val habitReminderHour : Int = 0,
+    @ColumnInfo val userID : String? = FirebaseAuth.getInstance().currentUser?.uid,
     @ColumnInfo val habitReminderMinute : Int = 0,
     @ColumnInfo var habitColor : Int,
-    @PrimaryKey(autoGenerate = true) val habitID : Int = 0,
-) {
+    @PrimaryKey(autoGenerate = false) val habitID : String = UUID.randomUUID().toString(),
+) : BaseEntity(habitID) {
 
 
      class StreaksConverter {
