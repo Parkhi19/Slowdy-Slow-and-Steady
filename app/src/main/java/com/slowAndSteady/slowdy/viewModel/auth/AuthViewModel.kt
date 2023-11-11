@@ -25,6 +25,9 @@ class AuthViewModel @Inject constructor(
     private val _authState = MutableStateFlow(AuthState.NONE)
     val authState = _authState.asStateFlow()
 
+    private val _userFetchFlow = MutableStateFlow<ResultState>(ResultState.None)
+    val userFetchFlow = _userFetchFlow.asStateFlow()
+
     suspend fun signInWithEmail(email: String, password: String) {
         val authResult = auth.signInWithEmailAndPassword(email, password).await()
         val token = authResult.user?.getIdToken(false)?.await()
@@ -47,6 +50,32 @@ class AuthViewModel @Inject constructor(
             }.addOnFailureListener {
                 _authState.value = AuthState.FAILED
             }
+        }
+    }
+
+    fun getUserFromRemote(userID: String) {
+        _userFetchFlow.value = ResultState.Loading
+        viewModelScope.launch(Dispatchers.IO) {
+            val user = userRepository.getUserFromRemote(userID)
+            _userFetchFlow.value = user
+        }
+    }
+
+    fun createUser(userName: String, email: String, uid: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.createAndUpdateUser(
+                userEntity = UserEntity(
+                    userName = userName,
+                    userEmail = email,
+                    userID = uid
+                )
+            )
+        }
+    }
+
+    fun populateDataInLocal(uid: String) {
+        SlowdyApplication.appScope.launch(Dispatchers.IO) {
+            habitRepository.populateHabitsInLocal(uid)
         }
     }
 }

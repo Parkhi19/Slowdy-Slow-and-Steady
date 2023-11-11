@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -19,14 +21,20 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.slowAndSteady.slowdy.R
+import com.slowAndSteady.slowdy.data.util.ResultState
+import com.slowAndSteady.slowdy.data.util.SlowdyException
 import com.slowAndSteady.slowdy.databinding.FragmentSigninBinding
 import com.slowAndSteady.slowdy.view.activity.MainActivity
+import com.slowAndSteady.slowdy.viewModel.auth.AuthViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSigninBinding
     private lateinit var navController: NavController
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+    private val  viewModel by activityViewModels<AuthViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +59,27 @@ class SignInFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+            viewModel.userFetchFlow.collectLatest {
+                when(it){
+                    is ResultState.Error -> {
+                        if(it.exception is SlowdyException.UserNotFoundException){
+                            Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    is ResultState.Success<*> -> {
+                        viewModel.populateDataInLocal(FirebaseAuth.getInstance().uid.toString())
+                        openHomeFragment()
+                    }
+                    ResultState.Loading -> {}
+                    ResultState.None -> {}
+                }
+            }
+        }
+    }
+
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -61,7 +90,7 @@ class SignInFragment : Fragment() {
                     auth.signInWithCredential(credential).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(requireContext(), "Done!!", Toast.LENGTH_SHORT).show()
-                            openHomeFragment()
+                            viewModel.getUserFromRemote(task.result.user?.uid.toString())
                         } else {
                             Toast.makeText(requireContext(), "Failed!!", Toast.LENGTH_SHORT).show()
                         }
@@ -77,5 +106,6 @@ class SignInFragment : Fragment() {
     private fun openHomeFragment() {
         val intent = Intent(requireContext(), MainActivity::class.java)
         startActivity(intent)
+        requireActivity().finish()
     }
 }
