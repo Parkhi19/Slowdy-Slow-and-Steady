@@ -12,13 +12,13 @@ import java.util.UUID
 
 @Entity(tableName = "habit_table")
 data class HabitEntity(
-    @ColumnInfo val habitStartDate : Long,
-    @ColumnInfo val habitName : String,
+    @ColumnInfo val habitStartDate : Long = 0,
+    @ColumnInfo val habitName : String = "",
     @ColumnInfo val habitStreaks :  List<Boolean> = emptyList(),
     @ColumnInfo val habitReminderHour : Int = 0,
     @ColumnInfo val userID : String? = FirebaseAuth.getInstance().currentUser?.uid,
     @ColumnInfo val habitReminderMinute : Int = 0,
-    @ColumnInfo var habitColor : Int,
+    @ColumnInfo var habitColor : Int = 0,
     @PrimaryKey(autoGenerate = false) val habitID : String = UUID.randomUUID().toString(),
 ) : BaseEntity(habitID) {
 

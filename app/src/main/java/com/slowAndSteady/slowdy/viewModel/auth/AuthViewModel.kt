@@ -1,12 +1,13 @@
 package com.slowAndSteady.slowdy.viewModel.auth
 
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
+import com.slowAndSteady.slowdy.SlowdyApplication
 import com.slowAndSteady.slowdy.data.entity.UserEntity
+import com.slowAndSteady.slowdy.data.repository.HabitRepository
 import com.slowAndSteady.slowdy.data.repository.UserRepository
+import com.slowAndSteady.slowdy.data.util.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val habitRepository: HabitRepository
 ) : ViewModel() {
 
     private val auth = FirebaseAuth.getInstance()

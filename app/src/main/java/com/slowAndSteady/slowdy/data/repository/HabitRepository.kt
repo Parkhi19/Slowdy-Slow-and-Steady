@@ -6,6 +6,7 @@ import com.slowAndSteady.slowdy.data.entity.HabitEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class HabitRepository @Inject constructor(private val habitDao: HabitDao) : RemoteRepo {
@@ -28,5 +29,13 @@ class HabitRepository @Inject constructor(private val habitDao: HabitDao) : Remo
             collectionReference.document(habitId.toString()).delete()
         }
     }
-    
+
+    suspend fun populateHabitsInLocal(uid: String) {
+        val habitQuery = collectionReference.whereEqualTo("userID", uid).get().await()
+        habitQuery.forEach {
+            val doc = it.toObject(HabitEntity::class.java)
+            habitDao.insertHabit(doc)
+        }
+    }
+
 }
