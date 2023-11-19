@@ -54,7 +54,26 @@ class AuthViewModel @Inject constructor(
             }
         }
     }
-
+   fun emailSignUp(email: String, password: String, userName: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _authState.value = AuthState.LOADING
+            val auth = FirebaseAuth.getInstance()
+            auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
+                _authState.value = AuthState.SUCCESS
+                viewModelScope.launch(Dispatchers.IO) {
+                    userRepository.createAndUpdateUser(
+                        userEntity = UserEntity(
+                            userName =  userName,
+                            userID = it.user?.uid.toString()
+                        )
+                    )
+                    _authState.value = AuthState.SUCCESS
+                }
+            }.addOnFailureListener {
+                _authState.value = AuthState.FAILED
+            }
+        }
+    }
     fun getUserFromRemote(userID: String) {
         _userFetchFlow.value = ResultState.Loading
         viewModelScope.launch(Dispatchers.IO) {
