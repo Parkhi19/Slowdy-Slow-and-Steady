@@ -22,6 +22,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.slowAndSteady.slowdy.R
 import com.slowAndSteady.slowdy.databinding.FragmentSignupBinding
@@ -36,6 +40,8 @@ class SignupFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+    private lateinit var email: String
+    private lateinit var password: String
     private val viewModel by activityViewModels<AuthViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -102,20 +108,42 @@ class SignupFragment : Fragment() {
         }
         else{
             binding.signupBtn.setOnClickListener {
-                val email = binding.emailAddressInput.text.toString()
-                val password = binding.passwordInput.text.toString()
+                email = binding.emailAddressInput.text.toString()
+                password = binding.passwordInput.text.toString()
                 if(!isEmailValid(email)){
                     Toast.makeText(requireContext(), "Invalid Email", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
                 else{
+                    checkForFirstTime(email)
                     createAccount(email, password)
-
                 }
 
             }
         }
 
+                }
+
+    private fun checkForFirstTime(email: String) {
+        val sanitizedEmail = email.replace(".", ",")
+        val database = FirebaseDatabase.getInstance()
+        val usersRef = database.reference.child("users")
+
+        usersRef.child(sanitizedEmail).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val exists = snapshot.exists()
+
+                if (exists) {
+                    showAlert("User Exists", "User with email $email already exists!", error = true)
+                } else {
+                    createAccount(email, password)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle errors here
+            }
+        })
     }
     fun isEmailValid(email: String?): Boolean {
         val expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"
