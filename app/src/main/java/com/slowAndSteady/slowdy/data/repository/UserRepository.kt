@@ -37,4 +37,13 @@ class UserRepository @Inject constructor(private val userDao: UserDao) : RemoteR
         return ResultState.Success(userEntity)
     }
 
+    suspend fun getUserFromRemoteByEmail(email : String) :ResultState{
+        val userQuery = collectionReference.whereEqualTo("userEmail", email).limit(1).get().await()
+        if(userQuery.isEmpty){
+            return ResultState.Error(SlowdyException.UserNotFoundException)
+        }
+        val userEntity = userQuery.documents[0].toObject(UserEntity::class.java)
+        userDao.insertUser(userEntity!!)
+        return ResultState.Success(userEntity)
+    }
 }

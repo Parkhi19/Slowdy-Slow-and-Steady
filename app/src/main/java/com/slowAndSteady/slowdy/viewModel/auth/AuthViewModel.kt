@@ -8,6 +8,7 @@ import com.slowAndSteady.slowdy.data.entity.UserEntity
 import com.slowAndSteady.slowdy.data.repository.HabitRepository
 import com.slowAndSteady.slowdy.data.repository.UserRepository
 import com.slowAndSteady.slowdy.data.util.ResultState
+import com.slowAndSteady.slowdy.domain.useCase.SignUpWithEmailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val habitRepository: HabitRepository
+    private val habitRepository: HabitRepository,
+    private val signUpWithEmailUseCase: SignUpWithEmailUseCase
 ) : ViewModel() {
 
     private val auth = FirebaseAuth.getInstance()
@@ -56,22 +58,20 @@ class AuthViewModel @Inject constructor(
     }
    fun emailSignUp(email: String, password: String, userName: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            _authState.value = AuthState.LOADING
-            val auth = FirebaseAuth.getInstance()
-            auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-                _authState.value = AuthState.SUCCESS
-                viewModelScope.launch(Dispatchers.IO) {
-                    userRepository.createAndUpdateUser(
-                        userEntity = UserEntity(
-                            userName =  userName,
-                            userID = it.user?.uid.toString()
-                        )
-                    )
-                    _authState.value = AuthState.SUCCESS
-                }
-            }.addOnFailureListener {
-                _authState.value = AuthState.FAILED
-            }
+          signUpWithEmailUseCase(email, password, userName).let {
+              when(it){
+                  is ResultState.Success<*> -> {
+                      _authState.value = AuthState.SUCCESS
+                  }
+                  is ResultState.Error -> {
+                      _authState.value = AuthState.FAILED
+                  }
+                  else -> {
+                      _authState.value = AuthState.NONE
+                  }
+              }
+          }
+
         }
     }
     fun getUserFromRemote(userID: String) {
@@ -99,8 +99,8 @@ class AuthViewModel @Inject constructor(
             habitRepository.populateHabitsInLocal(uid)
         }
     }
+    enum class AuthState {
+        SUCCESS, FAILED, LOADING, NONE
+    }
 }
 
-enum class AuthState {
-    SUCCESS, FAILED, LOADING, NONE
-}

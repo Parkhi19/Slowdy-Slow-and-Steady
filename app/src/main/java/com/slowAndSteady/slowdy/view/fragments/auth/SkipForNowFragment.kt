@@ -19,7 +19,6 @@ import com.slowAndSteady.slowdy.data.entity.HabitEntity
 import com.slowAndSteady.slowdy.databinding.FragmentSignupBinding
 import com.slowAndSteady.slowdy.databinding.FragmentSkipForNowBinding
 import com.slowAndSteady.slowdy.view.activity.MainActivity
-import com.slowAndSteady.slowdy.viewModel.auth.AuthState
 import com.slowAndSteady.slowdy.viewModel.auth.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -57,24 +56,24 @@ class SkipForNowFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.authState.collectLatest {
                 when (it) {
-                    AuthState.SUCCESS -> {
+                    AuthViewModel.AuthState.SUCCESS -> {
                         startActivity(
                             Intent(requireContext(), MainActivity::class.java))
                         requireActivity().finish()
                     }
 
-                    AuthState.FAILED -> {
+                    AuthViewModel.AuthState.FAILED -> {
                         binding.skipButton.visibility = View.VISIBLE
                         binding.skippedProgressBar.visibility = View.INVISIBLE
                     }
 
-                    AuthState.LOADING -> {
+                    AuthViewModel.AuthState.LOADING -> {
                         binding.skipButton.visibility = View.INVISIBLE
                         binding.skippedProgressBar.visibility = View.VISIBLE
 
                     }
 
-                    AuthState.NONE -> {
+                    AuthViewModel.AuthState.NONE -> {
                         binding.skipButton.visibility = View.VISIBLE
                         binding.skippedProgressBar.visibility = View.INVISIBLE
                     }
